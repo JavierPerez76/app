@@ -1,15 +1,13 @@
 import streamlit as st
-from dotenv import load_dotenv
 import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.language.questionanswering import QuestionAnsweringClient
 
 # Cargar las variables de configuración desde el archivo .env
-load_dotenv()
-ai_endpoint = os.getenv('AI_SERVICE_ENDPOINT')
-ai_key = os.getenv('AI_SERVICE_KEY')
-ai_project_name = os.getenv('QA_PROJECT_NAME')
-ai_deployment_name = os.getenv('QA_DEPLOYMENT_NAME')
+ai_endpoint = st.secrets('AI_SERVICE_ENDPOINT')
+ai_key = st.secrets('AI_SERVICE_KEY')
+ai_project_name = st.secrets('QA_PROJECT_NAME')
+ai_deployment_name = st.secrets('QA_DEPLOYMENT_NAME')
 
 # Crear el cliente utilizando el endpoint y la clave
 credential = AzureKeyCredential(ai_key)
