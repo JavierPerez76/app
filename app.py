@@ -14,10 +14,10 @@ credential = AzureKeyCredential(ai_key)
 ai_client = QuestionAnsweringClient(endpoint=ai_endpoint, credential=credential)
 
 # Título de la aplicación
-st.title("Chatbot de la historia de los JJOO")
+st.title("Chatbot vanguardias")
 
 # Cuadro con contexto
-st.info("💬 Este chatbot responde preguntas sobre la historia de los JJOO.")
+st.info("💬 Este chatbot responde preguntas sobre los movimientos vanguardistas.")
 
 # Espacio para mostrar el historial del chat
 if "messages" not in st.session_state:
