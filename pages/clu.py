@@ -55,7 +55,7 @@ def main():
             # Display top intent
             st.subheader(f"Top Intent: {top_intent}")
 
-            # Display entities in a table with enhanced visual style
+            # Display entities in a table with consistent styling
             if entities:
                 st.subheader("Entities Recognized:")
                 # Prepare the data for a table
@@ -66,8 +66,8 @@ def main():
                 }
                 df_entities = pd.DataFrame(entity_data)
 
-                # Display the table with some styling
-                st.dataframe(df_entities.style.applymap(lambda x: 'background-color: #D3F9D8' if isinstance(x, (float, int)) and x > 0.5 else '', subset=['Confidence Score']))
+                # Display the table with default styling
+                st.dataframe(df_entities)
 
             else:
                 st.write("No entities recognized.")
