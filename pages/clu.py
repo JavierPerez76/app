@@ -14,6 +14,7 @@ def main():
 
     # Streamlit UI
     st.title("Azure Language Understanding in Streamlit")
+    userText = st.text_input('Enter some text ("quit" to stop)')
 
     if userText.lower() != 'quit' and userText:
         try:
