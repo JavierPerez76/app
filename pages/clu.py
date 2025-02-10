@@ -3,6 +3,7 @@ import streamlit as st
 from dotenv import load_dotenv
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.language.conversations import ConversationAnalysisClient
+import pandas as pd
 
 # Main function for the Streamlit app
 def main():
@@ -51,12 +52,23 @@ def main():
             top_intent = result["result"]["prediction"]["topIntent"]
             entities = result["result"]["prediction"]["entities"]
 
-            # Display results
-            st.write("Top intent: {}".format(top_intent))
+            # Display top intent
+            st.subheader(f"Top Intent: {top_intent}")
+
+            # Display entities in a table with enhanced visual style
             if entities:
-                st.write("Entities recognized:")
-                for entity in entities:
-                    st.write(f"Entity category: {entity['category']}, Text: {entity['text']}, Confidence score: {entity['confidenceScore']}")
+                st.subheader("Entities Recognized:")
+                # Prepare the data for a table
+                entity_data = {
+                    "Category": [entity['category'] for entity in entities],
+                    "Text": [entity['text'] for entity in entities],
+                    "Confidence Score": [entity['confidenceScore'] for entity in entities]
+                }
+                df_entities = pd.DataFrame(entity_data)
+
+                # Display the table with some styling
+                st.dataframe(df_entities.style.applymap(lambda x: 'background-color: #D3F9D8' if isinstance(x, (float, int)) and x > 0.5 else '', subset=['Confidence Score']))
+
             else:
                 st.write("No entities recognized.")
 
