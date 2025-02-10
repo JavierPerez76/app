@@ -4,7 +4,7 @@ import streamlit as st
 from dotenv import load_dotenv
 from datetime import datetime, timedelta, date, timezone
 from azure.core.credentials import AzureKeyCredential
-from azure.ai.language.conversations import ConversationAnalysisClient
+# from azure.ai.language.conversations import ConversationAnalysisClient
 
 # Function for getting time based on location
 def GetTime(location):
