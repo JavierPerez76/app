@@ -4,7 +4,7 @@ import streamlit as st
 from dotenv import load_dotenv
 from datetime import datetime, timedelta, date, timezone
 from azure.core.credentials import AzureKeyCredential
-from azure.ai.language.conversations import QuestionAnsweringClient
+from azure.ai.language.conversations import ConversationAnalysisClient
 
 # Function for getting time based on location
 def GetTime(location):
@@ -83,7 +83,7 @@ def main():
     if userText.lower() != 'quit' and userText:
         try:
             # Create a client for the Language service model
-            client = QuestionAnsweringClient(
+            client = ConversationAnalysisClient(
                 ls_prediction_endpoint, AzureKeyCredential(ls_prediction_key))
 
             # Call the Language service model to get intent and entities
